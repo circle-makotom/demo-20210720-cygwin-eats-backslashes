@@ -30,7 +30,7 @@ jobs:
           command: .\setup-x86_64.exe -q -s https://mirrors.kernel.org/sourceware/cygwin/ -P bash,gcc-core
       - run:
           name: Building main.c with Cygwin GCC
-          shell: C:\cygwin64\bin\bash.exe --login -eo pipefail
+          shell: C:\\cygwin64\\bin\\bash.exe --login -eo pipefail
           command: |
             gcc -o /cygdrive/c/Users/circleci/project/argv.exe /cygdrive/c/Users/circleci/project/argv.c
             cp /usr/bin/cygwin1.dll /cygdrive/c/Users/circleci/project/
