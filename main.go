@@ -25,7 +25,7 @@ func runWith(shell string) {
 
 func main() {
 	if len(os.Args) > 1 {
-		fmt.Printf("%q\n", os.Args)
+		fmt.Printf("%v\n", os.Args)
 	} else {
 		// Calling Bash in multiple patterns in case we don't know which Bash is in the path
 		runWith("bash")
