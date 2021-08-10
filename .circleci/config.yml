@@ -32,14 +32,24 @@ jobs:
           name: Building main.c with Cygwin GCC
           shell: C:\\cygwin64\\bin\\bash.exe --login -eo pipefail
           command: |
-            gcc -o /cygdrive/c/Users/circleci/project/argv.exe /cygdrive/c/Users/circleci/project/argv.c
+            gcc -o /cygdrive/c/Users/circleci/project/argv-cygwin.exe /cygdrive/c/Users/circleci/project/argv.c
             cp /usr/bin/cygwin1.dll /cygdrive/c/Users/circleci/project/
+      - run:
+          name: Building main.c with MSVC compiler
+          command: |
+            $vsInstallPath=$(& 'C:\Program Files (x86)\Microsoft Visual Studio\Installer\vswhere.exe' -property installationPath)
+            Import-Module $vsInstallPath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll
+            Enter-VsDevShell -VsInstallPath $vsInstallPath
+
+            cl.exe argv.c
       - run: go build main.go
       - run: .\main.exe
       - store_artifacts:
           path: main.exe
       - store_artifacts:
           path: argv.exe
+      - store_artifacts:
+          path: argv-cygwin.exe
       - store_artifacts:
           path: cygwin1.dll
 

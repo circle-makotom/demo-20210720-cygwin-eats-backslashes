@@ -35,7 +35,9 @@ func main() {
 		// Calling myself for reference
 		runWith("./main")
 
-		// Calling argv.c for reference
+		// Executing AOT-compiled argv.c for reference
+		// Run both executables by a native compiler and Cygwin GCC
 		runWith("./argv")
+		runWith("./argv-cygwin")
 	}
 }
